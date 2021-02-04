@@ -1,4 +1,4 @@
-function promiseAll(array) {
+function promiseRace(array) {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < array.length; i++) {
             array[i].then((answer) => {
