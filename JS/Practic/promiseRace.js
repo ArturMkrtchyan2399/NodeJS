@@ -1,6 +1,5 @@
 function promiseRace(array) {
     return new Promise((resolve, reject) => {
-        let isRejected = false;
         let isResolved = false;
         for (let i = 0; i < array.length; i++) {
             array[i].then((answer) => {
@@ -9,11 +8,10 @@ function promiseRace(array) {
                     resolve(answer)
                 }
             }).catch((err) => {
-                if (!isRejected) {
-                    isRejected = true
+                if (!isResolved) {
+                    isResolved = true;
                     reject(err)
                 }
-
             })
         }
 
