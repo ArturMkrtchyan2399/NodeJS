@@ -15,7 +15,7 @@ class Detective extends Film {
 
     static printWithSuspiciousCases(detectives) {
         for (let i = 0; i < detectives.length; i++) {
-            if (detectives.isSuspiciousCases) {
+            if (detectives[i].isSuspiciousCases) {
                 detectives[i].print();
             }
         }
