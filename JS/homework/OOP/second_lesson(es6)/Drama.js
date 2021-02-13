@@ -1,38 +1,22 @@
-class Film {
-    constructor(scenario, director, actors, operator, year) {
-        this.scenario = scenario;
-        this.director = director;
-        this.actors = actors;
-        this.operator = operator;
-        this.year = year;
-    }
-
-
-    age() {
-        return (new Date()).getFullYear() - this.year;
-    }
-
-    setVolume(volume) {
-        if (volume >= 0 && volume <= 100) {
-            console.log("Volume is set to " + volume);
-        }
-    }
-
-    play() {
-        console.log("Film is playing");
-    }
-
-    stop() {
-        console.log("Film stopped");
+class Drama extends Film {
+    constructor(scenario, director, actors, operator, year, relationship, statesOfHumanLife) {
+        super(scenario, director, actors, operator, year);
+        this.relationship = relationship;
+        this.statesOfHumanLife = statesOfHumanLife;
     }
 
     print() {
-        console.log(`      Scenario - ${this.scenario}
-      Director - ${this.director}
-      Actors - ${this.actors}
-      Operator - ${this.operator}
-      Year - ${this.year}`)
+        super.print();
+        console.log(`      Realtionship - ${this.relationship}
+      States of Human life - ${this.statesOfHumanLife}`)
     }
+
+    static printOlderThan100Years(dramas) {
+        for (let i = 0; i < dramas.length; i++) {
+            if (dramas[i].age() > 100) {
+                dramas[i].print();
+            }
+        }
+    }
+
 }
-
-
