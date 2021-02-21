@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const bcrypt = require('bcrypt');
 
 const createUser = async (user, res) => {
@@ -11,7 +11,10 @@ const createUser = async (user, res) => {
             }))
         }
 
-        let users = usersArray();
+        let users = await usersArray();
+        if (!users) {
+            throw new Error("Error while reading!!!");
+        }
         for (const temp of users) {
             if (temp.email === user.email) {
                 res.statusCode = 400;
@@ -26,12 +29,11 @@ const createUser = async (user, res) => {
         user.password = await bcrypt.hash(user.password, 10);
         users.push(user);
 
-        fs.writeFile('./db/users.json', JSON.stringify(users, null, 4), () => {
-            res.statusCode = 201;
-            return res.end(JSON.stringify({
-                message: "You have successfully registered"
-            }));
-        });
+        await fs.writeFile('./db/users.json', JSON.stringify(users, null, 4));
+        res.statusCode = 201;
+        return res.end(JSON.stringify({
+            message: "You have successfully registered"
+        }));
     } catch (err) {
         console.log(err);
         res.statusCode = 500;
@@ -41,49 +43,88 @@ const createUser = async (user, res) => {
     }
 }
 
-const getAllUsers = (res) => {
-    let users = usersArray();
-    for (const user of users) {
-        delete user.password;
+const getAllUsers = async (res) => {
+    try {
+        let users = await usersArray();
+        if (!users) {
+            throw new Error("Error while reading!!!");
+        }
+        for (const user of users) {
+            delete user.password;
+        }
+        res.statusCode = 200;
+        return res.end(JSON.stringify({users}));
+    }catch(err){
+        console.log(err);
+        res.statusCode = 500;
+        return res.end(JSON.stringify({
+            message: err.message
+        }));
     }
-    res.statusCode = 200;
-    return res.end(JSON.stringify({users}));
 }
 
-const getById = (id, res) => {
-    const users = usersArray();
-    for (const user of users) {
-        if (user.id === id) {
-            delete user.password;
-            res.statusCode = 200;
-            return res.end(JSON.stringify({user}));
+const getById = async (id, res) => {
+    try {
+        const users = await usersArray();
+        if (!users) {
+            throw new Error("Error while reading!!!");
         }
+        for (const user of users) {
+            if (user.id === id) {
+                delete user.password;
+                res.statusCode = 200;
+                return res.end(JSON.stringify({user}));
+            }
+        }
+        res.statusCode = 404;
+        return res.end(JSON.stringify({
+            message: "User not found"
+        }));
+    }catch(err){
+        console.log(err);
+        res.statusCode = 500;
+        return res.end(JSON.stringify({
+            message: err.message
+        }));
     }
-    res.statusCode = 404;
-    return res.end(JSON.stringify({
-        message: "User not found"
-    }));
-
 }
 
-const getByName = (name, res) => {
-    const users = usersArray();
-    for (const user of users) {
-        if (user.name === name) {
-            delete user.password;
-            res.statusCode = 200;
-            return res.end(JSON.stringify({user}));
+const getByName = async (name, res) => {
+    try {
+        const users = await usersArray();
+        const arr = [];
+        if (!users) {
+            throw new Error("Error while reading!!!");
         }
+        for (const user of users) {
+            if (user.name === name) {
+                delete user.password;
+                arr.push(user);
+            }
+        }
+        if(arr.length !== 0){
+            res.statusCode = 200;
+            return res.end(JSON.stringify({"user":arr}));
+        }
+        res.statusCode = 404;
+        return res.end(JSON.stringify({
+            message: "User not found"
+        }));
+    }catch(err){
+        console.log(err);
+        res.statusCode = 500;
+        return res.end(JSON.stringify({
+            message: err.message
+        }));
     }
-    res.statusCode = 404;
-    return res.end(JSON.stringify({
-        message: "User not found"
-    }));
 }
 
 const updateUser = async (id, userData, res) => {
     try {
-        let users = usersArray();
+        let users = await usersArray();
+        if (!users) {
+            throw new Error("Error while reading!!!");
+        }
         let userFound = false;
         if (typeof id === "number") {
             for (let i = 0; i < users.length; ++i) {
@@ -113,13 +154,11 @@ const updateUser = async (id, userData, res) => {
             }));
         }
 
-        fs.writeFile('./db/users.json', JSON.stringify(users, null, 4), () => {
-            res.statusCode = 200;
-            return res.end(JSON.stringify({
-                message: "User successfully updated"
-            }));
-        });
-
+        await fs.writeFile('./db/users.json', JSON.stringify(users, null, 4));
+        res.statusCode = 200;
+        return res.end(JSON.stringify({
+            message: "User successfully updated"
+        }));
     } catch (err) {
         console.log(err);
         res.statusCode = 500;
@@ -129,35 +168,39 @@ const updateUser = async (id, userData, res) => {
     }
 }
 
-const deleteUser = (id, res) => {
-    if (typeof id === "number") {
-        var users = usersArray();
-        var updated = users.filter(el => el.id !== id);
-    } else {
-        res.statusCode = 404;
-        return res.end(JSON.stringify({
-            message: "Invalid endpoint"
-        }));
-    }
-    if (users.length === updated.length) {
-        res.statusCode = 404;
-        return res.end(JSON.stringify({
-            message: "User not found"
-        }));
-    }
-
-    fs.writeFile('./db/users.json', JSON.stringify(updated, null, 4), err => {
-        if (err) {
-            res.statusCode = 500;
+const deleteUser = async (id, res) => {
+    try {
+        if (typeof id === "number") {
+            var users = await usersArray();
+            if (!users) {
+                throw new Error("Error while reading!!!");
+            }
+            var updated = users.filter(el => el.id !== id);
+        } else {
+            res.statusCode = 404;
             return res.end(JSON.stringify({
-                message: err.message
+                message: "Invalid endpoint"
             }));
         }
+        if (users.length === updated.length) {
+            res.statusCode = 404;
+            return res.end(JSON.stringify({
+                message: "User not found"
+            }));
+        }
+
+        await fs.writeFile('./db/users.json', JSON.stringify(updated, null, 4));
         res.statusCode = 200;
         return res.end(JSON.stringify({
             message: "User successfully deleted"
         }));
-    });
+    }catch(err){
+        console.log(err);
+        res.statusCode = 500;
+        return res.end(JSON.stringify({
+            message: err.message
+        }));
+    }
 }
 
 const checkURL = (req) => {
@@ -225,7 +268,12 @@ const validate = (user) => {
 }
 
 
-const usersArray = () => {
-    const data = fs.readFileSync('./db/users.json');
-    return data.toString().length === 0 ? [] : JSON.parse(data);
+const usersArray = async () => {
+    try {
+        const data = await fs.readFile('./db/users.json');
+        return data.toString().length === 0 ? [] : JSON.parse(data);
+    }catch(err){
+        console.log(err);
+        return undefined;
+    }
 }
