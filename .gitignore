@@ -1,3 +1,4 @@
 .idea/
 *.iml
 out/
+/JS/homework/CRUD_SERVER/node_modules/
