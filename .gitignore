@@ -2,3 +2,4 @@
 *.iml
 out/
 /JS/homework/CRUD_SERVER/node_modules/
+/JS/homework/expressCRUD/node_modules/
