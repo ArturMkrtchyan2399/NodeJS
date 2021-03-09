@@ -3,3 +3,5 @@
 out/
 /JS/homework/CRUD_SERVER/node_modules/
 /JS/homework/expressCRUD/node_modules/
+JS/project/.env
+JS/project/node_modules
