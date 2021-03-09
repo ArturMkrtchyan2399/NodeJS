@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const updateAndSaveUser = async (userId, user) => {
     const foundedUser = await User.findOne({_id: userId}).exec();
     if (!foundedUser) {
-        return false
+        return false;
     }
     const {firstName, lastName, age, email, password} = user;
     if (firstName)
@@ -20,7 +20,7 @@ const updateAndSaveUser = async (userId, user) => {
 
     await foundedUser.save();
 
-    return true
+    return true;
 
 }
 

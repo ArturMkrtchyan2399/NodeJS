@@ -6,7 +6,7 @@ const validate = (user) => {
     const passwordRegExp = ["^(.*?[A-Z]){2,}.*$", "^(.*?\\d){2,}.*$"];
 
     if (firstName === undefined || lastName === undefined || age === undefined || email === undefined || password === undefined) {
-        return 'Fill in all fields'
+        return 'Fill in all fields';
     }
 
     if (firstName !== null && !firstName.match(nameRegExp)) {
@@ -16,7 +16,7 @@ const validate = (user) => {
         return "Please enter a valid surname";
     }
     if (age !== null && !(age >= 8 && age <= 100)) {
-        return "Please enter a valid age "
+        return "Please enter a valid age ";
     }
     if (email !== null && !email.match(emailRegExp)) {
         return "Please a valid email";

@@ -106,7 +106,7 @@ const updatePost = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -127,7 +127,7 @@ const getTopPosts = async (req, res) => {
             posts
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -146,7 +146,7 @@ const getPostById = async (req, res) => {
             post
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -177,7 +177,7 @@ const getPostsByDescription = async (req, res, next) => {
         return res.status(200).json({posts})
 
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -208,7 +208,7 @@ const deletePostById = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })

@@ -32,7 +32,7 @@ const updateUserById = async (req, res) => {
             message: "You have updated your info"
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -59,7 +59,7 @@ const getUsersByName = async (req, res) => {
             users
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -79,7 +79,7 @@ const getUserById = async (req, res) => {
             user
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
@@ -106,7 +106,7 @@ const getUserPostsById = async (req, res) => {
             posts
         })
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).json({
             message: 'Internal server error'
         })
