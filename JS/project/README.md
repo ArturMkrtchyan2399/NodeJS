@@ -78,3 +78,12 @@ Title - Delete post
 URL - /posts/:id
 METHOD - DELETE
 ```
+## Helper Links
+```
+Handling File Uploads in Node.js with Express and Multer
+https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
+______________________________________________________________________________
+Uploading an Image | Creating a REST API with Node.js
+https://www.youtube.com/watch?v=srPXMt1Q0nY&t=179s
+
+```
