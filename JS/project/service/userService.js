@@ -2,7 +2,7 @@ const {User} = require('../models');
 const bcrypt = require('bcrypt');
 
 const updateAndSaveUser = async (userId, user) => {
-    const foundedUser = await User.findOne({_id: userId}).exec();
+    const foundedUser = await User.findOne({_id: userId});
     if (!foundedUser) {
         return false;
     }
