@@ -26,15 +26,15 @@ Title - Get posts without authorization
 URL - /api/
 METHOD - GET 
 ________________________________________
-Ttile - Register in the system
+Title - Register in the system
 URL - /api/register
 Method - POST
 ______________________________
-Ttile - Login in the system
+Title - Login in the system
 URL - /api/login
 Method - POST
 ______________________________
-Ttile - Edit user information
+Title - Edit user information
 URL - /api/users/:id
 Method - PUT
 ______________________________
