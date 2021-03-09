@@ -24,7 +24,7 @@ node app.js
 ```
 Title - Get posts without authorization 
 URL - /api/
-METHOD - GET
+METHOD - GET 
 ________________________________________
 Ttile - Register in the system
 URL - /register
