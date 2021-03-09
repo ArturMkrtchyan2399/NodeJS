@@ -19,7 +19,7 @@ const upload = multer({
             cb(null, true);
         }
         else {
-            cb(new Error('File is not an image!'));
+            cb(new Error('File is not an image!,Please upload an image'));
         }
     }
 });
