@@ -22,6 +22,9 @@ node app.js
 
 ## Description
 ```
+When we get many  posts you can optionally set offset and limit
+query parameters
+______________________________________
 Title - Get posts without authorization 
 URL - /api/
 METHOD - GET 
