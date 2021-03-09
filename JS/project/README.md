@@ -27,55 +27,55 @@ URL - /api/
 METHOD - GET 
 ________________________________________
 Ttile - Register in the system
-URL - /register
+URL - /api/register
 Method - POST
 ______________________________
 Ttile - Login in the system
-URL - /login
+URL - /api/login
 Method - POST
 ______________________________
 Ttile - Edit user information
-URL - /users/:id
+URL - /api/users/:id
 Method - PUT
 ______________________________
 Title - Get users 
-URL - /users/:id
+URL - /api/users/:id
 METHOD - GET
 ______________________________
 Title - Get users by name
-URL - /users?name=?????
+URL - /api/users?name=
 METHOD - GET
 ______________________________
 Title - Get users posts 
-URL - /users/:id/posts
+URL - /api/users/:id/posts
 METHOD - GET
 ______________________________
 Title - Create post
-URL - /posts
+URL - /api/posts
 METHOD - POST
 ______________________________
 Title - Edit post
-URL - /posts/:id
+URL - /api/posts/:id
 METHOD - PUT
 ______________________________
 Title - Get posts by descrition
-URL - /posts?description=????
+URL - /api/posts?description=
 METHOD - GET
 ______________________________
 Title - Get posts
-URL - /posts
+URL - /api/posts
 METHOD - GET
 ______________________________
 Title - Get top posts
-URL - /posts/top
+URL - /api/posts/top
 METHOD - GET
 ______________________________
 Title - Get post by id
-URL - /posts/:id
+URL - /api/posts/:id
 METHOD - GET
 ______________________________
 Title - Delete post 
-URL - /posts/:id
+URL - /api/posts/:id
 METHOD - DELETE
 ```
 ## Helper Links
