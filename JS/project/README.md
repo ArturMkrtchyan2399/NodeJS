@@ -20,7 +20,7 @@ npm install
 node app.js 
 ```
 
-##Description
+## Description
 ```
 Title - Get posts without authorization 
 URL - /api/
