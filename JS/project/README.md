@@ -38,7 +38,7 @@ Ttile - Edit user information
 URL - /api/users/:id
 Method - PUT
 ______________________________
-Title - Get users 
+Title - Get users by id
 URL - /api/users/:id
 METHOD - GET
 ______________________________
@@ -46,7 +46,7 @@ Title - Get users by name
 URL - /api/users?name=
 METHOD - GET
 ______________________________
-Title - Get users posts 
+Title - Get users posts by id
 URL - /api/users/:id/posts
 METHOD - GET
 ______________________________
