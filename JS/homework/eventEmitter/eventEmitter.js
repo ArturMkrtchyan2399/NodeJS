@@ -10,11 +10,11 @@ class MyEventEmitter {
         this.events[eventName].push(fn);
     }
 
-    removeListener(name, removeListener) {
-        if (!this.events[name]) {
+    removeListener(eventName, removeListener) {
+        if (!this.events[eventName]) {
             return;
         }
-        this.events[name] = this.events[name].filter(fn => fn !== removeListener);
+        this.events[eventName] = this.events[eventName].filter(fn => fn !== removeListener);
     }
 
     emit(eventName, ...args) {
