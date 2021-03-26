@@ -5,3 +5,5 @@ out/
 /JS/homework/expressCRUD/node_modules/
 JS/project/.env
 JS/project/node_modules
+/JS/homework/expressStatic/node_modules
+/JS/homework/githubRepo/node_modules

@@ -1,0 +1,20 @@
+{
+  "name": "githubRepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "collectios:repositories": "node ./scripts/collect-repositories"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2",
+    "redis": "^3.0.2"
+  }
+}
